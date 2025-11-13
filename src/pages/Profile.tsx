@@ -53,7 +53,6 @@ export const Profile = () => {
             Назад
           </button>
           <h1 className="text-blue-900">Профиль игрока</h1>
-
           <button
             onClick={logOut}
             className="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-all disabled:opacity-50 disabled:pointer-events-none outline-none focus-visible:ring-2 focus-visible:ring-offset-2 bg-transparent text-gray-800 hover:bg-gray-100"

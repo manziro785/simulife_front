@@ -4,7 +4,7 @@ import { Spinner } from "../ui/spinner";
 import type { AuthFormInputs, AuthFormProps } from "../../types/auth";
 
 export default function AuthForm({ tab }: AuthFormProps) {
-  const { login, register: registerUser } = useAuth();
+  const { submitAuth } = useAuth();
 
   const {
     register,
@@ -13,11 +13,7 @@ export default function AuthForm({ tab }: AuthFormProps) {
   } = useForm<AuthFormInputs>();
 
   const onSubmit: SubmitHandler<AuthFormInputs> = async (data) => {
-    if (tab === "login") {
-      login(data);
-    } else {
-      registerUser(data);
-    }
+    await submitAuth(data, tab);
   };
   return (
     <div>

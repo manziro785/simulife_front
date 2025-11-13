@@ -22,7 +22,6 @@ export const useGameStore = create<GameStore>()(
   persist(
     (set) => ({
       gameState: initialGameState(),
-
       selectCharacter: (character: Character) =>
         set((state) => ({
           gameState: {

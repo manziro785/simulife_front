@@ -4,9 +4,9 @@ import { AuthPage } from "../pages/AuthPage";
 import { CharacterSelect } from "../pages/CharacterSelect";
 import { IntroScene } from "../pages/IntroScene";
 import { GameDayPage } from "../pages/GameDayPage";
-import { FinalScreenWrapper } from "../components/common/FinalScreenWrapper";
 import { Profile } from "../pages/Profile";
 import { GuestRoute, AuthRoute } from "./ProtectedRoute";
+import { FinalScreen } from "../pages/FinalScreen";
 
 const routes = [
   { path: "/", element: <HomePage />, access: "guest" },
@@ -14,7 +14,7 @@ const routes = [
   { path: "/character-select", element: <CharacterSelect />, access: "auth" },
   { path: "/intro", element: <IntroScene />, access: "auth" },
   { path: "/day/:id", element: <GameDayPage />, access: "auth" },
-  { path: "/final", element: <FinalScreenWrapper />, access: "auth" },
+  { path: "/final", element: <FinalScreen />, access: "auth" },
   { path: "/profile", element: <Profile />, access: "auth" },
   { path: "/*", element: <HomePage />, access: "guest" },
 ];

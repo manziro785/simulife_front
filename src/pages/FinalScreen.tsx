@@ -1,24 +1,21 @@
+import { useNavigate } from "react-router-dom";
+import { useGameStore } from "../store (zustand)/useGameStore";
 import { usePlayerStore } from "../store (zustand)/usePlayerStore";
-import type { GameState } from "../types/game";
 import { Trophy, RotateCcw, Coins, Zap, Smile, TrendingUp } from "lucide-react";
 
-type FinalScreenProps = {
-  gameState: GameState;
-  onRestart: () => void;
-  onProfile: () => void;
-};
-
-export const FinalScreen: React.FC<FinalScreenProps> = ({
-  gameState,
-  onRestart,
-  onProfile,
-}) => {
+export const FinalScreen = () => {
   const playerName = usePlayerStore((state) => state.playerName);
+  const navigate = useNavigate();
+  const { gameState } = useGameStore();
+
   const initialStats = gameState.character?.stats || {
     money: 0,
     energy: 0,
     mood: 0,
   };
+
+  const onRestart = () => navigate("/character-select");
+  const onProfile = () => navigate("/profile");
 
   const calculateGrowth = (initial: number, current: number) => {
     const growth = current - initial;
@@ -35,6 +32,7 @@ export const FinalScreen: React.FC<FinalScreenProps> = ({
     gameState.stats.energy
   );
   const moodGrowth = calculateGrowth(initialStats.mood, gameState.stats.mood);
+
   return (
     <div className="min-h-screen relative overflow-hidden flex items-center justify-center">
       <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-600"></div>
