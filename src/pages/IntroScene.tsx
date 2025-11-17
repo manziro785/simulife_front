@@ -3,7 +3,7 @@ import { usePlayerStore } from "../store (zustand)/usePlayerStore";
 import { useGameStore } from "../store (zustand)/useGameStore";
 
 export const IntroScene = () => {
-  const playerName = usePlayerStore((state) => state.playerName);
+  const { nickname } = usePlayerStore();
   const selectedCharacter = usePlayerStore((state) => state.selectedCharacter);
   const { resetGame, selectCharacter } = useGameStore();
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export const IntroScene = () => {
             <div className="p-8 md:p-12">
               <div className="space-y-6 text-center">
                 <div>
-                  <h1 className="text-blue-900 mb-8">Привет, {playerName}!</h1>
+                  <h1 className="text-blue-900 mb-8">Привет, {nickname}!</h1>
                 </div>
                 <div className="space-y-4 text-slate-700">
                   <p>

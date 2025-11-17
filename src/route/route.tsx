@@ -7,6 +7,7 @@ import { GameDayPage } from "../pages/GameDayPage";
 import { Profile } from "../pages/Profile";
 import { GuestRoute, AuthRoute } from "./ProtectedRoute";
 import { FinalScreen } from "../pages/FinalScreen";
+import RatePage from "../pages/RatePage";
 
 const routes = [
   { path: "/", element: <HomePage />, access: "guest" },
@@ -16,6 +17,7 @@ const routes = [
   { path: "/day/:id", element: <GameDayPage />, access: "auth" },
   { path: "/final", element: <FinalScreen />, access: "auth" },
   { path: "/profile", element: <Profile />, access: "auth" },
+  { path: "/rate", element: <RatePage />, access: "auth" },
   { path: "/*", element: <HomePage />, access: "guest" },
 ];
 

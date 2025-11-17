@@ -84,3 +84,10 @@ export type LessonPopupProps = {
   lesson: Lesson;
   onClose: () => void;
 };
+
+export type GameResult = {
+  characterId: string;
+  mood: number;
+  money: number;
+  energy: number;
+};

@@ -1,8 +1,22 @@
 import type { Character } from "./game";
 
-export type PlayerStore = {
+export interface PlayerStore {
   selectedCharacter: Character | null;
-  playerName: string;
-  setSelectedCharacter: (char: Character) => void;
-  setPlayerName: (name: string) => void;
+  nickname: string | null;
+  setSelectedCharacter: (char: Character | null) => void;
+  setNickname: (nickname: string | null) => void;
+}
+
+export type UserInfo = {
+  id: number;
+  nickname: string;
+  User: {
+    nickname: string;
+  };
+  Character: {
+    name: string;
+  };
+  money: number;
+  energy: number;
+  mood: number;
 };

@@ -7,16 +7,16 @@ export const usePlayerStore = create<PlayerStore>()(
   persist(
     (set) => ({
       selectedCharacter: null,
-      playerName: "",
-      setSelectedCharacter: (char: Character) =>
+      nickname: null,
+      setNickname: (nickname: string | null) => set({ nickname }),
+      setSelectedCharacter: (char: Character | null) =>
         set({ selectedCharacter: char }),
-      setPlayerName: (name: string) => set({ playerName: name }),
     }),
     {
       name: "simulife_player_store",
       partialize: (state) => ({
         selectedCharacter: state.selectedCharacter,
-        playerName: state.playerName,
+        nickname: state.nickname,
       }),
     }
   )

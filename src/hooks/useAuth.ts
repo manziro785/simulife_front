@@ -2,7 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 import { fetchLogin, fetchRegister } from "../api/auth";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store (zustand)/useAuthStore";
-import type { AuthResponse, TabType, User } from "../types/auth";
+import type { AuthResponse, LoginUser, RegisterUser } from "../types/auth";
+import { usePlayerStore } from "../store (zustand)/usePlayerStore";
 
 export const useAuth = () => {
   const navigate = useNavigate();
@@ -10,6 +11,10 @@ export const useAuth = () => {
   const handleSuccess = (data: AuthResponse) => {
     localStorage.setItem("token", data.token);
     useAuthStore.getState().setToken(data.token);
+
+    if (data.nickname) {
+      usePlayerStore.getState().setNickname(data.nickname);
+    }
     navigate("/character-select");
   };
 
@@ -19,22 +24,25 @@ export const useAuth = () => {
   };
 
   const loginMutation = useMutation({
-    mutationFn: (params: User) => fetchLogin(params),
+    mutationFn: (params: LoginUser) => fetchLogin(params),
     onSuccess: handleSuccess,
     onError: handleError,
   });
 
   const registerMutation = useMutation({
-    mutationFn: (params: User) => fetchRegister(params),
+    mutationFn: (params: RegisterUser) => fetchRegister(params),
     onSuccess: handleSuccess,
     onError: handleError,
   });
 
-  const submitAuth = async (data: User, type: TabType) => {
+  const submitAuth = async (
+    data: LoginUser | RegisterUser,
+    type: "login" | "register"
+  ) => {
     if (type === "login") {
-      return loginMutation.mutateAsync(data);
+      return loginMutation.mutateAsync(data as LoginUser);
     } else {
-      return registerMutation.mutateAsync(data);
+      return registerMutation.mutateAsync(data as RegisterUser);
     }
   };
 

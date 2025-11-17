@@ -1,5 +1,3 @@
-import { Input } from "../components/ui/input";
-import { Label } from "../components/ui/label";
 import { Coins, Zap, Smile } from "lucide-react";
 import { Spinner } from "../components/ui/spinner";
 import { useCharacter } from "../hooks/useCharacters";
@@ -15,8 +13,6 @@ export const CharacterSelect = () => {
     setSelectedCharacter,
     startGame,
     canStartGame,
-    playerName,
-    setPlayerName,
   } = useCharacter();
 
   if (error) return <Error />;
@@ -103,23 +99,8 @@ export const CharacterSelect = () => {
           {selectedCharacter && (
             <div className="max-w-md mx-auto">
               <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border bg-white/90 backdrop-blur-sm">
-                <div className="pt-6">
+                <div className="pt-1">
                   <div className="space-y-4 p-3">
-                    <div className="space-y-2 ">
-                      <Label
-                        htmlFor="player-name "
-                        className="text-black flex mb-2"
-                      >
-                        Твоё имя
-                      </Label>
-                      <Input
-                        id="player-name"
-                        placeholder="Введи своё имя"
-                        value={playerName}
-                        onChange={(e) => setPlayerName(e.target.value)}
-                        className="text-gray-700"
-                      />
-                    </div>
                     <button
                       onClick={startGame}
                       disabled={!canStartGame}

@@ -1,11 +1,18 @@
-export interface User {
+export interface LoginUser {
   email: string;
+  password: string;
+}
+
+export interface RegisterUser {
+  email: string;
+  nickname: string;
   password: string;
 }
 
 export interface AuthResponse {
   token: string;
-  user: User;
+  message: string;
+  nickname: string;
 }
 
 export type TabType = "login" | "register";
@@ -19,9 +26,4 @@ export type AuthState = {
   isAuthenticated: boolean;
   setToken: (token: string | null) => void;
   logout: () => void;
-};
-
-export type AuthFormInputs = {
-  email: string;
-  password: string;
 };

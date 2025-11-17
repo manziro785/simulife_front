@@ -19,7 +19,7 @@ import { useAchievements } from "../config/achievments";
 
 export const Profile = () => {
   const navigate = useNavigate();
-  const playerName = usePlayerStore((state) => state.playerName);
+  const { nickname } = usePlayerStore();
   const gameState = useGameStore((state) => state.gameState);
   const resetGame = useGameStore((state) => state.resetGame);
   const achievements = useAchievements();
@@ -70,7 +70,7 @@ export const Profile = () => {
                   <div className="text-6xl mb-4">
                     {gameState.character?.avatar}
                   </div>
-                  <h2 className="text-blue-900 mb-2">{playerName}</h2>
+                  <h2 className="text-blue-900 mb-2">{nickname}</h2>
                   <p className="text-slate-600">{gameState.character?.name}</p>
                   <div className="mt-2 border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90 inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden">
                     День {gameState.currentDay - 1} / 7

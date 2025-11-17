@@ -4,8 +4,8 @@ import { usePlayerStore } from "../store (zustand)/usePlayerStore";
 import { useNavigate } from "react-router-dom";
 
 export const useCharacter = () => {
-  const { playerName, setPlayerName, selectedCharacter, setSelectedCharacter } =
-    usePlayerStore();
+  const { nickname } = usePlayerStore();
+  const { selectedCharacter, setSelectedCharacter } = usePlayerStore();
   const navigate = useNavigate();
 
   const {
@@ -18,14 +18,14 @@ export const useCharacter = () => {
   });
 
   const canStartGame = (): boolean => {
-    return Boolean(playerName.trim() && selectedCharacter);
+    return Boolean(nickname?.trim() && selectedCharacter);
   };
 
   const startGame = () => {
     if (canStartGame()) {
       navigate("/intro");
     } else {
-      alert("Введите имя и выберите персонажа!");
+      alert("Выберите персонажа");
     }
   };
 
@@ -37,7 +37,5 @@ export const useCharacter = () => {
     setSelectedCharacter,
     startGame,
     canStartGame,
-    playerName,
-    setPlayerName,
   };
 };

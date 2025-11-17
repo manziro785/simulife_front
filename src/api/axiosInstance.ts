@@ -23,7 +23,7 @@ api.interceptors.response.use(
     if (error.res?.status === 401) {
       console.warn("401 Не авториз");
       localStorage.removeItem("token");
-      window.location.href = "/login";
+      window.location.href = "/auth";
     }
     return Promise.reject(error);
   }
